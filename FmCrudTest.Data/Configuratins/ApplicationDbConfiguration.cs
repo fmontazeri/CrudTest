@@ -15,7 +15,7 @@ namespace FmCrudTest.Data.Configuratins
     {
         public override void InitializeDatabase(TestDbContext context)
         {
-            context.Database.ExecuteSqlCommand("CREATE DATABASE {0} COLLATE Latin1_General_CI_AS", "FrmCrudSample");
+            context.Database.ExecuteSqlCommand("CREATE DATABASE {0} COLLATE Latin1_General_CI_AS", "FatemehMontazeriDb");
         }
     }
 

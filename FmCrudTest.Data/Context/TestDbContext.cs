@@ -13,7 +13,7 @@ namespace FmCrudTest.Data.Context
 {
     public class TestDbContext : DbContext
     {
-        public TestDbContext() : base(@"Data Source=MONTAZERI-PC\SQLDEV;Initial Catalog=FmCrudSample;User Id=sa;Password=1404;")
+        public TestDbContext() :base("TestDbContext") 
         {
             // Database.SetInitializer<TestDbContext>(new ApplicationDbConfiguration());
         }
