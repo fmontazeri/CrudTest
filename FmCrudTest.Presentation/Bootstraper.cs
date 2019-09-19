@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿using System.Data.Entity;
+using System.Reflection;
+using System.Web;
 using System.Web.Mvc;
 using FmCrudTest.Data.Context;
 using FmCrudTest.Data.Services;
@@ -15,12 +17,22 @@ namespace FmCrudTest.Presentation
         {
  
             container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
+
+            //var hybridLifestyle = Lifestyle.CreateHybrid(()=> )
+            //() => HttpContext.Current != null,
+            //new WebRequestLifestyle(),
+            //new LifetimeScopeLifestyle());
+
+            // Register as hybrid PerWebRequest / PerLifetimeScope.
+            //container.Register<DbContext, MyDbContext>(hybridLifestyle);
+
             container.Register(() =>
                 {
                     var dbContext = new TestDbContext();
                     return dbContext;
-                }, Lifestyle.Singleton
+                }, Lifestyle.Scoped
             );
+
             container.Register<ICustomerRepository, CustomerRepository>(lifestyle: Lifestyle.Transient);
 
             container.RegisterMvcControllers(Assembly.GetExecutingAssembly());

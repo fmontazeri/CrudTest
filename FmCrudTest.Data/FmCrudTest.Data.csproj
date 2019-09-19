@@ -53,11 +53,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuratins\ApplicationDbConfiguration.cs" />
     <Compile Include="Context\TestDbContext.cs" />
     <Compile Include="Configuratins\CustomerAgg\CustomerConfiguration.cs" />
     <Compile Include="Migrations\201909190915304_Initial-Create.cs" />
     <Compile Include="Migrations\201909190915304_Initial-Create.Designer.cs">
       <DependentUpon>201909190915304_Initial-Create.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909191813406_Change-ColumnProperties.cs" />
+    <Compile Include="Migrations\201909191813406_Change-ColumnProperties.Designer.cs">
+      <DependentUpon>201909191813406_Change-ColumnProperties.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,6 +81,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201909190915304_Initial-Create.resx">
       <DependentUpon>201909190915304_Initial-Create.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909191813406_Change-ColumnProperties.resx">
+      <DependentUpon>201909191813406_Change-ColumnProperties.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

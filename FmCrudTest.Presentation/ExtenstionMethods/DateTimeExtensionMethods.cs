@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using FmCrudTest.Domain;
 
 namespace FmCrudTest.Presentation.ExtenstionMethods
 {
     public static class DateTimeExtensionMethods
     {
 
-        public static DateTime ToDateTime(this string datetime)
+        public static DateTime ToDateTime(this string datetimeString)
         {
-            var input = datetime.Split('/');
-            return  new DateTime(Int32.Parse(input[2]) , Int32.Parse(input[1]) , Int32.Parse(input[0]));
+        
+            var inputArr = datetimeString.Split('/');
+            if(inputArr.Length<3) throw  new BusinessException("Enter your birthdate correctly");
+            return  new DateTime(Int32.Parse(inputArr[2]) , Int32.Parse(inputArr[1]) , Int32.Parse(inputArr[0]));
         }
 
         public static string ToStringFormat(this DateTime dateTtime)

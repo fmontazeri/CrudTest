@@ -44,9 +44,13 @@ namespace FmCrudTest.Data.Services
         public void Delete(long id)
         {
             var customer = dbContext.Customers.Find(id);
-            if(customer != null)
-            dbContext.Customers.Remove(customer);
-            dbContext.SaveChanges();
+            if (customer != null)
+            {
+                dbContext.Customers.Remove(customer);
+                dbContext.SaveChanges();
+            }
         }
+
+        
     }
 }
