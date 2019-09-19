@@ -21,6 +21,15 @@ namespace FmCrudTest.Data.Context
         {
            
             modelBuilder.Configurations.Add(new CustomerMapping());
+
+            modelBuilder.Entity<Customer>()
+                .HasIndex(p => p.Email)
+                .IsUnique(true);
+            modelBuilder.Entity<Customer>()
+                .HasIndex(p => new { p.FirstName, p.LastName, p.DateOfBirth })
+                .IsUnique(true);
+
+
             base.OnModelCreating(modelBuilder);
         }
     }

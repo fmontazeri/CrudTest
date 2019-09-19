@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.Migrations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity.Migrations;
 using FmCrudTest.Data.Context;
 using FmCrudTest.Domain.CustomerAgg;
 
-namespace FmCrudTest.Data.Repositories
+namespace FmCrudTest.Data.Services
 {
     public class CustomerRepository : ICustomerRepository
     {

@@ -13,7 +13,7 @@ namespace FmCrudTest.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201909190707060_Initial-Create"; }
+            get { return "201909190915304_Initial-Create"; }
         }
         
         string IMigrationMetadata.Source

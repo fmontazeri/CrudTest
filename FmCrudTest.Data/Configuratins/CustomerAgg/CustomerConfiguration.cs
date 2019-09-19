@@ -8,11 +8,11 @@ namespace FmCrudTest.Data.Configuratins.CustomerAgg
         public CustomerMapping()
         {
             HasKey(m => m.Id);
-            Property(m => m.FirstName);
-            Property(m => m.LastName);
+            Property(m => m.FirstName).HasMaxLength(50);
+            Property(m => m.LastName).HasMaxLength(50); 
             Property(m => m.DateOfBirth);
-            Property(m => m.PhoneNumber);
-            Property(m => m.Email);
+            Property(m => m.PhoneNumber).HasColumnType("varchar");
+            Property(m => m.Email).HasMaxLength(50); ;
             Property(m => m.BankAccountNumber);
             ToTable("Customer");
         }
