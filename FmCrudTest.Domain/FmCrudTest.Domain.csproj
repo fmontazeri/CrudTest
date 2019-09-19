@@ -46,7 +46,6 @@
     <Compile Include="CustomerAgg\Customer.part.cs" />
     <Compile Include="CustomerAgg\Exceptions\InvalidPhoneNumberException.cs" />
     <Compile Include="CustomerAgg\ICustomerRepository.cs" />
-    <Compile Include="CustomerAgg\Services\ICustomerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -11,10 +11,11 @@ namespace FmCrudTest.Domain.CustomerAgg
 {
     public partial class Customer
     {
-        public Customer(string firstName, string lastName, DateTime dateOfBirth, string phoneNumber, string email, int bankAccountNumber)
+        public Customer(string firstName, string lastName, DateTime dateOfBirth, string phoneNumber, string email,
+            int bankAccountNumber)
         {
+  
             GuardAgainstEmptyPhoneNumber(phoneNumber);
-            //GuardAgainstInvalidPhoneNumber(GetProperPhoneNumber(phoneNumber));
 
             FirstName = firstName;
             LastName = lastName;
@@ -24,10 +25,12 @@ namespace FmCrudTest.Domain.CustomerAgg
             BankAccountNumber = bankAccountNumber;
         }
 
-      
 
-        public  Customer Update(string firstName, string lastName, DateTime dateOfBirth, string phoneNumber, string email, int bankAccountNumber)
+
+        public Customer Update(string firstName, string lastName, DateTime dateOfBirth, string phoneNumber,
+            string email, int bankAccountNumber)
         {
+          
             GuardAgainstEmptyPhoneNumber(phoneNumber);
 
             FirstName = firstName;
@@ -42,17 +45,8 @@ namespace FmCrudTest.Domain.CustomerAgg
         private void GuardAgainstEmptyPhoneNumber(string phoneNumber)
         {
             if (string.IsNullOrEmpty(phoneNumber) || string.IsNullOrWhiteSpace(phoneNumber))
-                throw new InvalidPhoneNumberException("Enter Youe phone number , please");
-        }
-        private void GuardAgainstInvalidPhoneNumber(string phoneNumber)
-        {
-            if (!int.TryParse(phoneNumber, out int validPhoneNumber))
-                throw new InvalidPhoneNumberException("Enter Your phone number in correct format");
-        }
-
-        private string GetProperPhoneNumber(string phoneNumber)
-        {
-            return phoneNumber.Replace("(", "").Replace(")", "").Replace(" ", "");
+                throw new InvalidPhoneNumberException("Enter your phone number");
         }
     }
+
 }

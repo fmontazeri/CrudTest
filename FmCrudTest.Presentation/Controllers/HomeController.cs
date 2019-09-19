@@ -43,6 +43,8 @@ namespace FmCrudTest.Presentation.Controllers
         [HttpPost]
         public ActionResult Create(CreateCustomerModel collection)
         {
+            if (!ModelState.IsValid) return View();
+
             try
             {
                 // TODO: Add insert logic here
@@ -51,14 +53,10 @@ namespace FmCrudTest.Presentation.Controllers
                  customerRepository.Add(customer);
                 return RedirectToAction("Index");
             }
-            catch (BusinessException ex)
-            {
-                ModelState.AddModelError("Error", ex.Message);
-                return View();
-            }
             catch (Exception ex)
             {
-                ModelState.AddModelError("Error" , ex.Message);
+                var errorMessage = ex.InnerException != null ? ex.InnerException.InnerException.Message : ex.Message;
+                ModelState.AddModelError("Error", errorMessage);
                 return View();
             }
         }
@@ -84,6 +82,7 @@ namespace FmCrudTest.Presentation.Controllers
         [HttpPost]
         public ActionResult Edit(int id, EditCustomerModel collection)
         {
+            if (!ModelState.IsValid) return View();
             try
             {
                 // TODO: Add update logic here
@@ -94,16 +93,13 @@ namespace FmCrudTest.Presentation.Controllers
                 customerRepository.Update(customer);
                 return RedirectToAction("Index");
             }
-            catch (BusinessException ex)
+            catch (Exception ex)
             {
-                ModelState.AddModelError("Error", ex.Message);
+                var errorMessage = ex.InnerException != null ? ex.InnerException.InnerException.Message : ex.Message;
+                ModelState.AddModelError("Error", errorMessage);
                 return View();
             }
-            catch(Exception ex)
-            {
-                ModelState.AddModelError("Error", "An unhandle error has been occured!");
-                return View();
-            }
+
         }
 
         // GET: Home/Delete/5

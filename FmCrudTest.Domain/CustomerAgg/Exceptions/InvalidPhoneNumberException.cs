@@ -8,7 +8,7 @@ namespace FmCrudTest.Domain.CustomerAgg.Exceptions
 {
     public class InvalidPhoneNumberException : BusinessException 
     {
-        public InvalidPhoneNumberException(string message) : base("The Phone Number is invalid!")
+        public InvalidPhoneNumberException(string message) : base(message)
         {
         }
     }
