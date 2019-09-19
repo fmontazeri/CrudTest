@@ -59,7 +59,9 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @data_inputmask = "'mask':'(999) 999-9999'", @data_mask = "" } })
+                                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" , id = "phone", type = "tel" } })
+                                <span id="valid-msg" class="hide">✓ Valid</span>
+                                <span id="error-msg" class="hide"></span>
                                 @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger", })
                             </div>
                         </div>
@@ -92,6 +94,43 @@
 
 @section Scripts {
  <script type="text/javascript">
+     //Validation Phone number
+     var input = document.querySelector("#phone"),
+         errorMsg = document.querySelector("#error-msg"),
+         validMsg = document.querySelector("#valid-msg");
 
+// here, the index maps to the error code returned from getValidationError - see readme
+     var errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
+
+// initialise plugin
+     var iti = window.intlTelInput(input, {
+         utilsScript: "/Scripts/js/utils.js?1567329555819"
+     });
+
+     var reset = function() {
+         input.classList.remove("error");
+         errorMsg.innerHTML = "";
+         errorMsg.classList.add("hide");
+         validMsg.classList.add("hide");
+     };
+
+// on blur: validate
+     input.addEventListener('blur', function() {
+         reset();
+         if (input.value.trim()) {
+             if (iti.isValidNumber()) {
+                 validMsg.classList.remove("hide");
+             } else {
+                 input.classList.add("error");
+                 var errorCode = iti.getValidationError();
+                 errorMsg.innerHTML = errorMap[errorCode];
+                 errorMsg.classList.remove("hide");
+             }
+         }
+     });
+
+// on keyup / change flag: reset
+     input.addEventListener('change', reset);
+     input.addEventListener('keyup', reset);
  </script>
 }

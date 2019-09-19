@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessException.cs" />
     <Compile Include="CustomerAgg\Customer.cs" />
     <Compile Include="CustomerAgg\Customer.part.cs" />
     <Compile Include="CustomerAgg\Exceptions\InvalidPhoneNumberException.cs" />

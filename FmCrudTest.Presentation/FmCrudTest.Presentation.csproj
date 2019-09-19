@@ -653,9 +653,21 @@
     <Content Include="AdminLTE\pages\UI\timeline.html" />
     <Content Include="AdminLTE\pages\widgets.html" />
     <Content Include="AdminLTE\readme.txt" />
+    <Content Include="build2\js\utils.js" />
+    <Content Include="Content\css\countrySync.css" />
+    <Content Include="Content\css\demo.css" />
+    <Content Include="Content\css\intlTelInput.css" />
+    <Content Include="Content\css\intlTelInput.min.css" />
+    <Content Include="Content\css\isValidNumber.css" />
+    <Content Include="Content\css\prism.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\js\intlTelInput.js" />
+    <Content Include="Scripts\js\intlTelInput.min.js" />
+    <Content Include="Scripts\js\prism.js" />
+    <Content Include="Scripts\js\utils.js" />
     <Content Include="Views\Shared\advanced.html" />
     <Content Include="Views\Shared\index.html" />
+    <Content Include="Views\Shared\is-valid-number.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -726,6 +738,7 @@
     <Content Include="Views\Home\Edit.cshtml" />
     <Content Include="Views\Home\Delete.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Scripts\js\isValidNumber.js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

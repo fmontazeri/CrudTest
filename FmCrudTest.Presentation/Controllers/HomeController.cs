@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FmCrudTest.Domain;
 using FmCrudTest.Domain.CustomerAgg;
 using FmCrudTest.Presentation.ExtenstionMethods;
 using FmCrudTest.Presentation.Models;
@@ -50,9 +51,14 @@ namespace FmCrudTest.Presentation.Controllers
                  customerRepository.Add(customer);
                 return RedirectToAction("Index");
             }
-            catch(Exception e)
+            catch (BusinessException ex)
             {
-                ModelState.AddModelError("Error","An error has been occured!");
+                ModelState.AddModelError("Error", ex.Message);
+                return View();
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("Error" , ex.Message);
                 return View();
             }
         }
@@ -81,15 +87,21 @@ namespace FmCrudTest.Presentation.Controllers
             try
             {
                 // TODO: Add update logic here
-                var customer  = customerRepository.GetById(id);
+                var customer = customerRepository.GetById(id);
                 var dateOfBirth = DateTimeExtensionMethods.ToDateTime(collection.DateOfBirth);
                 customer.Update(collection.FirstName, collection.LastName, dateOfBirth,
                     collection.PhoneNumber, collection.Email, collection.BankAccountNumber);
                 customerRepository.Update(customer);
                 return RedirectToAction("Index");
             }
-            catch(Exception e)
+            catch (BusinessException ex)
             {
+                ModelState.AddModelError("Error", ex.Message);
+                return View();
+            }
+            catch(Exception ex)
+            {
+                ModelState.AddModelError("Error", "An unhandle error has been occured!");
                 return View();
             }
         }

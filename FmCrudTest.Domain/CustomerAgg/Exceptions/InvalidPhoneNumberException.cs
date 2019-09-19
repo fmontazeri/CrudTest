@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FmCrudTest.Domain.CustomerAgg.Exceptions
 {
-    public class InvalidPhoneNumberException : Exception
+    public class InvalidPhoneNumberException : BusinessException 
     {
         public InvalidPhoneNumberException(string message) : base("The Phone Number is invalid!")
         {

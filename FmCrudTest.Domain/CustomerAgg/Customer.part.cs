@@ -14,14 +14,29 @@ namespace FmCrudTest.Domain.CustomerAgg
         public Customer(string firstName, string lastName, DateTime dateOfBirth, string phoneNumber, string email, int bankAccountNumber)
         {
             GuardAgainstEmptyPhoneNumber(phoneNumber);
-            GuardAgainstInvalidPhoneNumber(GetProperPhoneNumber(phoneNumber));
+            //GuardAgainstInvalidPhoneNumber(GetProperPhoneNumber(phoneNumber));
 
             FirstName = firstName;
             LastName = lastName;
             DateOfBirth = dateOfBirth;
-            PhoneNumber = phoneNumber;
+            PhoneNumber = phoneNumber.Trim();
             Email = email;
             BankAccountNumber = bankAccountNumber;
+        }
+
+      
+
+        public  Customer Update(string firstName, string lastName, DateTime dateOfBirth, string phoneNumber, string email, int bankAccountNumber)
+        {
+            GuardAgainstEmptyPhoneNumber(phoneNumber);
+
+            FirstName = firstName;
+            LastName = lastName;
+            DateOfBirth = dateOfBirth;
+            PhoneNumber = phoneNumber.Trim();
+            Email = email;
+            BankAccountNumber = bankAccountNumber;
+            return this;
         }
 
         private void GuardAgainstEmptyPhoneNumber(string phoneNumber)
@@ -31,24 +46,13 @@ namespace FmCrudTest.Domain.CustomerAgg
         }
         private void GuardAgainstInvalidPhoneNumber(string phoneNumber)
         {
-            if( !int.TryParse(phoneNumber, out int validPhoneNumber))
+            if (!int.TryParse(phoneNumber, out int validPhoneNumber))
                 throw new InvalidPhoneNumberException("Enter Your phone number in correct format");
         }
 
         private string GetProperPhoneNumber(string phoneNumber)
         {
             return phoneNumber.Replace("(", "").Replace(")", "").Replace(" ", "");
-        }
-
-        public  Customer Update(string firstName, string lastName, DateTime dateOfBirth, string phoneNumber, string email, int bankAccountNumber)
-        {
-            FirstName = firstName;
-            LastName = lastName;
-            DateOfBirth = dateOfBirth;
-            PhoneNumber = phoneNumber;
-            Email = email;
-            BankAccountNumber = bankAccountNumber;
-            return this;
         }
     }
 }
