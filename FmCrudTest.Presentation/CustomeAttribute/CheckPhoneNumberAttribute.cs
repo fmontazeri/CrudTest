@@ -11,19 +11,24 @@ namespace FmCrudTest.Presentation.CustomeAttribute
     public class CheckPhoneNumberAttribute : ValidationAttribute
     {
         public string AllowRegion { get; set; }
-        protected override ValidationResult IsValid(object phoneNumber, ValidationContext validationContext)
+
+        public override bool IsValid(object value)
         {
-            String numberStr = (string)phoneNumber;
-            PhoneNumberUtil phoneUtil = PhoneNumberUtil.GetInstance();
+            String numberStr = (string)value;
+
+            var util = PhoneNumberUtil.GetInstance();
             try
             {
-                PhoneNumber parsedNumber = phoneUtil.Parse(numberStr, AllowRegion);
-                return ValidationResult.Success;
+                var number = util.Parse(numberStr, AllowRegion);
+                bool isValid = util.IsValidNumber(number);
+                return isValid;
             }
-            catch (NumberParseException e)
+            catch (NumberParseException)
             {
-                return new ValidationResult("Enter your phone number");
+                return false;
             }
-  }
+
+        }
+
     }
 }

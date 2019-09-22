@@ -56,7 +56,6 @@
     <Compile Include="Configuratins\ApplicationDbConfiguration.cs" />
     <Compile Include="Context\TestDbContext.cs" />
     <Compile Include="Configuratins\CustomerAgg\CustomerConfiguration.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CustomerRepository.cs" />
   </ItemGroup>
